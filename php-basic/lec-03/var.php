@@ -1,0 +1,3 @@
+<?php 
+    $curso = "PHP BASIC";
+?>
