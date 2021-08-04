@@ -24,7 +24,5 @@ tasks:
     echo "Commands:";
     echo " * apachectl start";
     echo " * apachectl stop";
-    echo " * pg_start.sh";
-    echo " * pg_stop.sh";
     echo " * mysqld --daemonize";
     echo " * mysqladmin -uroot shutdown -p";
