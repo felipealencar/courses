@@ -1,0 +1,11 @@
+ports:
+  - port: 8000
+    onOpen: open-preview
+tasks:
+  - init: composer update
+    command: php -S 0.0.0.0:8000 -t .
+vscode:
+  extensions:
+    - bmewburn.vscode-intelephense-client
+    - felixfbecker.php-debug
+    - cvergne.vscode-php-getters-setters-cv
