@@ -7,4 +7,7 @@ cp ../config.inc.php .
 cp ../rds-combined-ca-bundle.pem .
 
 echo "Done"
+
+cd ..
+sudo chown -R 775 .
 source ~/.bashrc

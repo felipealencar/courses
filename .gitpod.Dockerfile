@@ -55,5 +55,3 @@ COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
 USER gitpod
 
 RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
-
-RUN sudo chown -R 775 .
