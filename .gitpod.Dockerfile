@@ -3,7 +3,7 @@ FROM gitpod/workspace-full
 USER root
 
 RUN apt-get update \
- && apt-get -y install postgresql postgresql-contrib mysql-server mysql-client \
+ && apt-get -y install mysql-server mysql-client \
  && apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
  && apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
  && apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
@@ -44,36 +44,19 @@ http {\n\
     }\n\
 }' > /etc/nginx/nginx.conf
 
-RUN echo '[mysqld_safe]\n\
-socket		= /var/run/mysqld/mysqld.sock\n\
-nice		= 0\n\
-[mysqld]\n\
-user		= gitpod\n\
-pid-file	= /var/run/mysqld/mysqld.pid\n\
-socket		= /var/run/mysqld/mysqld.sock\n\
-port		= 3306\n\
-basedir		= /usr\n\
-datadir		= /var/lib/mysql\n\
-tmpdir		= /tmp\n\
-lc-messages-dir	= /usr/share/mysql\n\
-skip-external-locking\n\
-bind-address		= 0.0.0.0\n\
-key_buffer_size		= 16M\n\
-max_allowed_packet	= 16M\n\
-thread_stack		= 192K\n\
-thread_cache_size   = 8\n\
-myisam-recover-options  = BACKUP\n\
-query_cache_limit	    = 1M\n\
-query_cache_size        = 16M\n\
-general_log_file        = /var/log/mysql/mysql.log\n\
-general_log             = 1\n\
-log_error               = /var/log/mysql/error.log\n\
-expire_logs_days	= 10\n\
-max_binlog_size     = 100M' > /etc/mysql/my.cnf
+# Install MySQL
+RUN install-packages mysql-server \
+ && mkdir -p /var/run/mysqld /var/log/mysql \
+ && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
-RUN mysqld --daemonize --skip-grant-tables \
-    && sleep 3 \
-    && ( mysql -uroot -e "USE mysql; UPDATE user SET authentication_string=PASSWORD(\"123456\") WHERE user='root'; UPDATE user SET plugin=\"mysql_native_password\" WHERE user='root'; FLUSH PRIVILEGES;" ) \
-    && mysqladmin -u root -p 123456 shutdown;
+# Install our own MySQL config
+COPY mysql.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
-USER root
+# Install default-login for MySQL clients
+COPY client.cnf /etc/mysql/mysql.conf.d/client.cnf
+
+COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
+
+USER gitpod
+
+RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
