@@ -1,44 +1,53 @@
 FROM gitpod/workspace-mysql
 
-USER root
-# Setup Heroku CLI
-RUN curl https://cli-assets.heroku.com/install.sh | sh
-
-# Setup MongoDB
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
-RUN apt-get update -y
-RUN touch /etc/init.d/mongod
-RUN apt-get -y install mongodb-org mongodb-org-server -y
-RUN apt-get update -y
-RUN apt-get -y install links
-
-ENV APP_PASS=""
-ENV ROOT_PASS=""
-ENV APP_DB_PASS=""
-
-RUN echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
-RUN echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASS" | debconf-set-selections
-RUN echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ROOT_PASS" | debconf-set-selections
-RUN echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_DB_PASS" | debconf-set-selections
-RUN echo "phpmyadmin phpmyadmin/mysql/admin-user string root"| debconf-set-selections 
-RUN echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
-
-#PHPMYADMIN
-RUN sudo apt-get update && \
-    sudo env="DEBIAN_FRONTEND=noninteractive" apt-get install -y phpmyadmin && \
-    sudo rm -rf /var/lib/apt/lists/*
-
-RUN sudo dpkg-reconfigure --frontend=noninteractive phpmyadmin
-
 USER gitpod
-# Local environment variables
-# C9USER is temporary to allow the MySQL Gist to run
-ENV C9_USER="gitpod"
-ENV PORT="8080"
-ENV IP="0.0.0.0"
-ENV C9_HOSTNAME="localhost"
 
+RUN sudo touch /var/log/workspace-image.log \
+    && sudo chmod 666 /var/log/workspace-image.log \
+    && sudo touch /var/log/workspace-init.log \
+    && sudo chmod 666 /var/log/workspace-init.log \
+    && sudo touch /var/log/xdebug.log \
+    && sudo chmod 666 /var/log/xdebug.log
 
-USER root
-# Switch back to root to allow IDE to load
+RUN echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections \
+    && sudo apt-get update -q \
+    && sudo apt-get -y install php7.4-fpm rsync grc shellcheck \
+    && sudo apt-get clean
+    
+COPY --chown=gitpod:gitpod .gp/conf/xdebug/xdebug.ini /tmp
+RUN wget http://xdebug.org/files/xdebug-3.0.4.tgz \
+    && tar -xvzf xdebug-3.0.4.tgz \
+    && cd xdebug-3.0.4 \
+    && phpize \
+    && ./configure --enable-xdebug \
+    && make \
+    && sudo cp modules/xdebug.so /usr/lib/php/20190902/xdebug.so \
+    && sudo bash -c "echo -e '\nzend_extension = /usr/lib/php/20190902/xdebug.so\n[XDebug]\nxdebug.client_host = 127.0.0.1\nxdebug.client_port = 9009\nxdebug.log = /var/log/xdebug.log\nxdebug.mode = debug\nxdebug.start_with_request = trigger\n' >> /etc/php/7.4/cli/php.ini" \
+    && sudo bash -c "echo -e '\nzend_extension = /usr/lib/php/20190902/xdebug.so\n[XDebug]\nxdebug.client_host = 127.0.0.1\nxdebug.client_port = 9009\nxdebug.log = /var/log/xdebug.log\nxdebug.mode = debug\nxdebug.start_with_request = trigger\n' >> /etc/php/7.4/apache2/php.ini" \
+    && sudo cp /tmp/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini \
+    && sudo ln -s /etc/php/7.4/mods-available/xdebug.ini /etc/php/7.4/fpm/conf.d 
+
+COPY --chown=gitpod:gitpod .gp/bash/update-composer.sh /tmp
+RUN sudo bash -c ". /tmp/update-composer.sh" && rm /tmp/update-composer.sh
+
+# gitpod trick to bypass the docker caching mechanism for all lines below this one
+# just increment the value each time you want to bypass the cache system
+ENV INVALIDATE_CACHE=186
+
+COPY --chown=gitpod:gitpod .gp/conf/apache/apache2.conf /etc/apache2/apache2.conf
+COPY --chown=gitpod:gitpod .gp/conf/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --chown=gitpod:gitpod .gp/bash/.bash_aliases /home/gitpod
+COPY --chown=gitpod:gitpod .gp/bash/utils.sh /tmp
+COPY --chown=gitpod:gitpod starter.ini /tmp
+COPY --chown=gitpod:gitpod .gp/bash/scaffold-project.sh /tmp
+RUN sudo bash -c ". /tmp/scaffold-project.sh" && rm /tmp/scaffold-project.sh
+
+# Aliases
+COPY --chown=gitpod:gitpod .gp/snippets/server-functions.sh /tmp
+COPY --chown=gitpod:gitpod .gp/snippets/browser-functions.sh /tmp
+RUN cp /tmp/server-functions.sh ~/.bashrc.d/server-functions \
+    && cp /tmp/browser-functions.sh ~/.bashrc.d/browser-functions
+
+# Customs cli's and user scripts for /usr/local/bin
+COPY --chown=gitpod:gitpod .gp/bash/bin/hot-reload.sh /usr/local/bin
+RUN sudo mv /usr/local/bin/hot-reload.sh /usr/local/bin/hot-reload
