@@ -1,53 +1,88 @@
-FROM gitpod/workspace-mysql
+FROM gitpod/workspace-full
+
+USER root
+
+RUN apt-get update \
+ && apt-get -y install postgresql postgresql-contrib mysql-server mysql-client \
+ && apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
+ && apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
+ && apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
+
+RUN mkdir /var/run/mysqld \
+ && chown -R gitpod:gitpod /var/run/mysqld /usr/share/mysql /var/lib/mysql /var/log/mysql /etc/mysql
+
+RUN a2enmod rewrite
+
+RUN echo 'worker_processes auto;\n\
+pid /var/run/nginx/nginx.pid;\n\
+include /etc/nginx/modules-enabled/*.conf;\n\
+env NGINX_DOCROOT_IN_REPO;\n\
+env GITPOD_REPO_ROOT;\n\
+events {\n\
+	worker_connections 768;\n\
+	multi_accept on;\n\
+}\n\
+http {\n\
+	sendfile on;\n\
+	tcp_nopush on;\n\
+	tcp_nodelay on;\n\
+	keepalive_timeout 65;\n\
+	types_hash_max_size 2048;\n\
+	include /etc/nginx/mime.types;\n\
+	access_log /var/log/nginx/access.log;\n\
+	error_log /var/log/nginx/error.log;\n\
+	gzip on;\n\
+	include /etc/nginx/conf.d/*.conf;\n\
+    server {\n\
+        set_by_lua $nginx_docroot_in_repo   '"'"'return os.getenv("NGINX_DOCROOT_IN_REPO")'"'"';\n\
+        set_by_lua $gitpod_repo_root        '"'"'return os.getenv("GITPOD_REPO_ROOT")'"'"';\n\
+        listen         0.0.0.0:8002;\n\
+        location / {\n\
+            root $gitpod_repo_root/$nginx_docroot_in_repo;\n\
+            index index.html index.htm index.php;\n\
+        }\n\
+    }\n\
+}' > /etc/nginx/nginx.conf
+
+RUN echo '[mysqld_safe]\n\
+socket		= /var/run/mysqld/mysqld.sock\n\
+nice		= 0\n\
+[mysqld]\n\
+user		= gitpod\n\
+pid-file	= /var/run/mysqld/mysqld.pid\n\
+socket		= /var/run/mysqld/mysqld.sock\n\
+port		= 3306\n\
+basedir		= /usr\n\
+datadir		= /var/lib/mysql\n\
+tmpdir		= /tmp\n\
+lc-messages-dir	= /usr/share/mysql\n\
+skip-external-locking\n\
+bind-address		= 0.0.0.0\n\
+key_buffer_size		= 16M\n\
+max_allowed_packet	= 16M\n\
+thread_stack		= 192K\n\
+thread_cache_size   = 8\n\
+myisam-recover-options  = BACKUP\n\
+query_cache_limit	    = 1M\n\
+query_cache_size        = 16M\n\
+general_log_file        = /var/log/mysql/mysql.log\n\
+general_log             = 1\n\
+log_error               = /var/log/mysql/error.log\n\
+expire_logs_days	= 10\n\
+max_binlog_size     = 100M' > /etc/mysql/my.cnf
 
 USER gitpod
+ENV PATH="$PATH:/usr/lib/postgresql/10/bin"
+ENV PGDATA="/home/gitpod/pg/data"
+RUN mkdir -p ~/pg/data; mkdir -p ~/pg/scripts; mkdir -p ~/pg/log; mkdir -p ~/pg/sockets; initdb -D pg/data/
+RUN echo '#!/bin/bash\npg_ctl -D ~/pg/data/ -l ~/pg/log/pgsql.log -o "-k ~/pg/sockets" start' > ~/pg/scripts/pg_start.sh
+RUN echo '#!/bin/bash\npg_ctl -D ~/pg/data/ -l ~/pg/log/pgsql.log -o "-k ~/pg/sockets" stop' > ~/pg/scripts/pg_stop.sh
+RUN chmod +x ~/pg/scripts/*
+ENV PATH="$PATH:$HOME/pg/scripts"
 
-RUN sudo touch /var/log/workspace-image.log \
-    && sudo chmod 666 /var/log/workspace-image.log \
-    && sudo touch /var/log/workspace-init.log \
-    && sudo chmod 666 /var/log/workspace-init.log \
-    && sudo touch /var/log/xdebug.log \
-    && sudo chmod 666 /var/log/xdebug.log
+RUN mysqld --daemonize --skip-grant-tables \
+    && sleep 3 \
+    && ( mysql -uroot -e "USE mysql; UPDATE user SET authentication_string=PASSWORD(\"123456\") WHERE user='root'; UPDATE user SET plugin=\"mysql_native_password\" WHERE user='root'; FLUSH PRIVILEGES;" ) \
+    && mysqladmin -uroot -p123456 shutdown;
 
-RUN echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections \
-    && sudo apt-get update -q \
-    && sudo apt-get -y install php7.4-fpm rsync grc shellcheck \
-    && sudo apt-get clean
-    
-COPY --chown=gitpod:gitpod .gp/conf/xdebug/xdebug.ini /tmp
-RUN wget http://xdebug.org/files/xdebug-3.0.4.tgz \
-    && tar -xvzf xdebug-3.0.4.tgz \
-    && cd xdebug-3.0.4 \
-    && phpize \
-    && ./configure --enable-xdebug \
-    && make \
-    && sudo cp modules/xdebug.so /usr/lib/php/20190902/xdebug.so \
-    && sudo bash -c "echo -e '\nzend_extension = /usr/lib/php/20190902/xdebug.so\n[XDebug]\nxdebug.client_host = 127.0.0.1\nxdebug.client_port = 9009\nxdebug.log = /var/log/xdebug.log\nxdebug.mode = debug\nxdebug.start_with_request = trigger\n' >> /etc/php/7.4/cli/php.ini" \
-    && sudo bash -c "echo -e '\nzend_extension = /usr/lib/php/20190902/xdebug.so\n[XDebug]\nxdebug.client_host = 127.0.0.1\nxdebug.client_port = 9009\nxdebug.log = /var/log/xdebug.log\nxdebug.mode = debug\nxdebug.start_with_request = trigger\n' >> /etc/php/7.4/apache2/php.ini" \
-    && sudo cp /tmp/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini \
-    && sudo ln -s /etc/php/7.4/mods-available/xdebug.ini /etc/php/7.4/fpm/conf.d 
-
-COPY --chown=gitpod:gitpod .gp/bash/update-composer.sh /tmp
-RUN sudo bash -c ". /tmp/update-composer.sh" && rm /tmp/update-composer.sh
-
-# gitpod trick to bypass the docker caching mechanism for all lines below this one
-# just increment the value each time you want to bypass the cache system
-ENV INVALIDATE_CACHE=186
-
-COPY --chown=gitpod:gitpod .gp/conf/apache/apache2.conf /etc/apache2/apache2.conf
-COPY --chown=gitpod:gitpod .gp/conf/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --chown=gitpod:gitpod .gp/bash/.bash_aliases /home/gitpod
-COPY --chown=gitpod:gitpod .gp/bash/utils.sh /tmp
-COPY --chown=gitpod:gitpod starter.ini /tmp
-COPY --chown=gitpod:gitpod .gp/bash/scaffold-project.sh /tmp
-RUN sudo bash -c ". /tmp/scaffold-project.sh" && rm /tmp/scaffold-project.sh
-
-# Aliases
-COPY --chown=gitpod:gitpod .gp/snippets/server-functions.sh /tmp
-COPY --chown=gitpod:gitpod .gp/snippets/browser-functions.sh /tmp
-RUN cp /tmp/server-functions.sh ~/.bashrc.d/server-functions \
-    && cp /tmp/browser-functions.sh ~/.bashrc.d/browser-functions
-
-# Customs cli's and user scripts for /usr/local/bin
-COPY --chown=gitpod:gitpod .gp/bash/bin/hot-reload.sh /usr/local/bin
-RUN sudo mv /usr/local/bin/hot-reload.sh /usr/local/bin/hot-reload
+USER root
