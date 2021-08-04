@@ -74,6 +74,6 @@ max_binlog_size     = 100M' > /etc/mysql/my.cnf
 RUN mysqld --daemonize --skip-grant-tables \
     && sleep 3 \
     && ( mysql -uroot -e "USE mysql; UPDATE user SET authentication_string=PASSWORD(\"123456\") WHERE user='root'; UPDATE user SET plugin=\"mysql_native_password\" WHERE user='root'; FLUSH PRIVILEGES;" ) \
-    && mysqladmin -uroot -p123456 shutdown;
+    && mysqladmin -u root -p 123456 shutdown;
 
 USER root

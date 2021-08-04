@@ -14,10 +14,9 @@ tasks:
 - name: Logs
   command: >
     mysqld --daemonize;
-    pg_start.sh;
     apachectl start;
     clear;
-    multitail /var/log/apache2/access.log -I /var/log/apache2/error.log -I /var/log/nginx/access.log -I /var/log/nginx/error.log /var/log/mysql/mysql.log -I /var/log/mysql/error.log -I ~/pg/log/pgsql.log;
+    multitail /var/log/apache2/access.log -I /var/log/apache2/error.log -I /var/log/nginx/access.log -I /var/log/nginx/error.log /var/log/mysql/mysql.log -I /var/log/mysql/error.log;
 - name: Terminal
   command: >
     clear;
@@ -25,4 +24,4 @@ tasks:
     echo " * apachectl start";
     echo " * apachectl stop";
     echo " * mysqld --daemonize";
-    echo " * mysqladmin -uroot shutdown -p";
+    echo " * mysqladmin -u root shutdown -p";
