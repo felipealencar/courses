@@ -114,12 +114,12 @@ stop_nginx() {
 }
 
 start_php_dev() {
-  php -S 127.0.0.1:8000 -t public/
+  php -S 127.0.0.1:8000 -t /
 }
 
 stop_php_dev() {
   local pid
   # The grep string here must match the command given in the function start_php_dev
-  pid=$(ps axf | grep 'php -S 127.0.0.1:8000 -t public/' | grep -v grep | awk '{print $1}' | sed 1q)
+  pid=$(ps axf | grep 'php -S 127.0.0.1:8000 -t /' | grep -v grep | awk '{print $1}' | sed 1q)
   [[ -n $pid ]] && kill -2 "$pid"
 }

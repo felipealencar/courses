@@ -27,6 +27,7 @@ install_phpmyadmin=$(. /tmp/utils.sh parse_ini_value /tmp/starter.ini phpmyadmin
 if [[ $install_phpmyadmin -eq 1 ]]; then
   mkdir -p "$_scaff_dest/public"
   chown -R gitpod:gitpod "$_scaff_dest/public"
+  chown -R gitpod:gitpod "$_scaff_dest"
   echo "  Installing phpmyadmin"  | tee -a $_log
   cd "$_scaff_dest/public" && composer create-project phpmyadmin/phpmyadmin
   _exitcode_phpmyadmin=$?
