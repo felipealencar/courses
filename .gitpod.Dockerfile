@@ -54,7 +54,7 @@ COPY client.cnf /etc/mysql/mysql.conf.d/client.cnf
 
 RUN chmod 775 mysql-bashrc-launch.sh
 COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
-
+ 
 USER gitpod
 
 RUN echo ". /etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
