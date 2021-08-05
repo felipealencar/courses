@@ -11,7 +11,7 @@ RUN sudo apt-get install -y mysql-server \
  && sudo apt-get clean -y \
  &&   sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
  &&   sudo mkdir /var/run/mysqld \
- &&   sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade /home/gitpod/.cache/heroku/
+ &&   sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
 
 RUN a2enmod rewrite
