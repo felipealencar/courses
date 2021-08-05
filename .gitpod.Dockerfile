@@ -2,16 +2,16 @@ FROM gitpod/workspace-full
 
 USER root
 
-RUN sudo apt-get update \
- && apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
- && apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
- && apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
+RUN sudo apt-get update && apt-get install -y apt-transport-https\
+ && sudo apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
+ && sudo apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
+ && sudo apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
  
 RUN sudo apt-get install -y mysql-server \
  && sudo apt-get clean -y \
- &&   sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
- &&   sudo mkdir /var/run/mysqld \
- &&   sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
+ && sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
+ && sudo mkdir /var/run/mysqld \
+ && sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
 
 RUN a2enmod rewrite
