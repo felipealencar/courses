@@ -2,10 +2,16 @@ FROM gitpod/workspace-full
 
 USER root
 
-RUN apt-get update \
+RUN sudo apt-get update \
  && apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
  && apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
  && apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
+ 
+RUN sudo apt-get install -y mysql-server \
+ && sudo apt-get clean -y \
+ &&   sudo rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
+ &&   sudo mkdir /var/run/mysqld \
+ &&   sudo chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade /home/gitpod/.cache/heroku/
 
 RUN a2enmod rewrite
 
@@ -42,16 +48,20 @@ http {\n\
 
 COPY apache.conf /etc/apache2/apache2.conf
 
-RUN install-packages mysql-server \
- && mkdir -p /var/run/mysqld /var/log/mysql \
- && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
-
 COPY mysql.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
 COPY client.cnf /etc/mysql/mysql.conf.d/client.cnf
 
+RUN chmod 775 mysql-bashrc-launch.sh
 COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
 
 USER gitpod
 
-RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
+RUN echo ". /etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
+
+# Local environment variables
+# C9USER is temporary to allow the MySQL Gist to run
+ENV C9_USER="root"
+ENV PORT="8080"
+ENV IP="0.0.0.0"
+ENV C9_HOSTNAME="localhost"
