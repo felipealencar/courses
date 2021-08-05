@@ -26,7 +26,7 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
 $cfg['Servers'][$i]['compress'] = true;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
-$cfg['Servers'][$i]['ssl'] = true;
+$cfg['Servers'][$i]['ssl'] = false;
 $cfg['Servers'][$i]['ssl_ca'] = 'rds-combined-ca-bundle.pem';
 
 

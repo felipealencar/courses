@@ -9,5 +9,5 @@ cp ../.gp/rds-combined-ca-bundle.pem .
 echo "Done"
 
 cd ..
-sudo chown -R 775 .
+sudo chmod -R 775 .
 source ~/.bashrc
