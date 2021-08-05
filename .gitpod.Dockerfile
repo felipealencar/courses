@@ -2,10 +2,15 @@ FROM gitpod/workspace-full
 
 USER root
 
-RUN apt-get update \
+RUN sudo apt-get update \
  && apt-get -y install php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
  && apt-get -y install php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
  && apt-get clean && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/*
+ 
+RUN install-packages mysql-server mysql-client \
+ && mkdir -p /var/run/mysqld /var/log/mysql \
+ && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
+
 
 RUN a2enmod rewrite
 
@@ -41,10 +46,6 @@ http {\n\
 }' > /etc/nginx/nginx.conf
 
 COPY apache.conf /etc/apache2/apache2.conf
-
-RUN install-packages mysql-server \
- && mkdir -p /var/run/mysqld /var/log/mysql \
- && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
 COPY mysql.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 
