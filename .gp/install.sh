@@ -3,7 +3,7 @@ cd phpmyadmin
 composer update --no-dev
 yarn install
 cp ../.gp/config.inc.php .
-# copy AWS RDS CA bundle
+# Cópia da chave para autenticação SSL.
 cp ../.gp/rds-combined-ca-bundle.pem .
 
 echo "Done"
