@@ -8,4 +8,4 @@ https://github.com/felipealencar/courses/tree/php-basic
 Each branch has its .gp directory (_in progress_) with a Dockerfile environment definition considering the programming language and libraries used in the branch-related course.
 
 # students and contributors
-[@Manuel-Antunes](https://github.com/Manuel-Antunes)
+[@Manuel-Antunes](https://github.com/Manuel-Antunes) 
