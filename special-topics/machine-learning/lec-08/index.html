@@ -38,50 +38,49 @@
             plot("Predição de Treinamento");
         }
         plot("Predição Aleatória");
-
+        
         function plot(legenda){
             let plotData = [];
+            let plotLinearRegressionData = [];
 
             for (let i = 0; i < dadosDeTreinamentoY.length; i++) {
                 plotData.push({ x: dadosDeTreinamentoX[i], y: dadosDeTreinamentoY[i] });
+                let y = dadosDeTreinamentoX[i]*a.dataSync()[0] + b.dataSync()[0];
+                plotLinearRegressionData.push({x: dadosDeTreinamentoX[i], y: y});
             }
-
+        
             var ctx = document.getElementById("grafico").getContext("2d");
  
             var scatterChart = new Chart(ctx, {
-            type: "line",
-            data: {
-                datasets: [
-                {
-                label: "Dados de Treinamento",
-                showLine: false,
-                data: plotData,
-                fill: false },
-
-                {
-                label: legenda,
-                data: [
-                {
-                    x: 0,
-                    y: b.dataSync()[0] },
-
-                {
-                    x: 10,
-                    y: 10 * a.dataSync()[0] + b.dataSync()[0] }],
-
-
                 type: "line",
-                borderColor: "red",
-                fill: false }] },
+                data: {
+                    datasets: [
+                    {
+                        label: "Dados de Treinamento",
+                        showLine: false,
+                        data: plotData,
+                        fill: false
+                    },
+                    {
+                        label: legenda,
+                        data: plotLinearRegressionData,
 
-
+                        type: "line",
+                        borderColor: "red",
+                        fill: false
+                    }]
+                },
 
                 options: {
                     scales: {
-                    xAxes: [
-                    {
-                        type: "linear",
-                        position: "bottom" }] } } });
+                        xAxes: [
+                        {
+                            type: "linear",
+                            position: "bottom" }
+                        ] 
+                    } 
+                } 
+            });
         }
     </script>
 </html>
