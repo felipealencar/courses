@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    </head>
+    <body>
+        <canvas id="grafico"></canvas>
+        <button onclick="treinamento();">Treinar</button>
+    </body>
+    <script>
+        const dadosDeTreinamentoX = [3.3, 4.4, 5.5, 6.71, 6.93, 4.168, 9.779, 6.182, 7.59, 2.167, 7.042, 10.791, 5.313, 7.997, 5.654, 9.27, 3.1];
+        const dadosDeTreinamentoY = [1.7, 2.76, 2.09, 3.19, 1.694, 1.573, 3.366, 2.596, 2.53, 1.221, 2.827, 3.465, 1.65, 2.904, 2.42, 2.94, 1.3];
+
+        // constantes da equação da reta: 'a' e 'b'
+        const a = tf.variable(tf.scalar(Math.random()));
+        const b = tf.variable(tf.scalar(Math.random()));
+
+        function predict(x){
+            return tf.tidy(function(){
+                return a.mul(x).add(b); // equação de uma reta - resulta em y
+            })
+        }
+
+        function margemDeErro(valorPredito, valorReal){
+            const erro = valorPredito.sub(valorReal).square().mean();
+            return erro;
+        }
+
+        const taxaDeAprendizagem = 0.01;
+        const otimizador = tf.train.sgd(taxaDeAprendizagem);
+
+        function treinamento(){
+            otimizador.minimize(function(){
+                const valoresDeYPreditos = predict(tf.tensor1d(dadosDeTreinamentoX));
+                margemDeErroDoPassoDeTreinamento = margemDeErro(valoresDeYPreditos, tf.tensor1d(dadosDeTreinamentoY));
+                return margemDeErroDoPassoDeTreinamento;
+            });
+            plot("Predição de Treinamento");
+        }
+        plot("Predição Aleatória");
+        
+        function plot(legenda){
+            let plotData = [];
+            let plotLinearRegressionData = [];
+
+            for (let i = 0; i < dadosDeTreinamentoY.length; i++) {
+                plotData.push({ x: dadosDeTreinamentoX[i], y: dadosDeTreinamentoY[i] });
+
+                // novo de cálculo da equação da reta para gerar o gráfico, utilizando as constantes a e b
+                // obtidas pelo train.sgd.
+                let y = dadosDeTreinamentoX[i]*a.dataSync()[0] + b.dataSync()[0];
+                plotLinearRegressionData.push({x: dadosDeTreinamentoX[i], y: y});
+            }
+        
+            var ctx = document.getElementById("grafico").getContext("2d");
+ 
+            var scatterChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    datasets: [
+                    {
+                        label: "Dados de Treinamento",
+                        showLine: false,
+                        data: plotData,
+                        fill: false
+                    },
+                    {
+                        label: legenda,
+                        data: plotLinearRegressionData,
+
+                        type: "line",
+                        borderColor: "red",
+                        fill: false
+                    }]
+                },
+
+                options: {
+                    scales: {
+                        xAxes: [
+                        {
+                            type: "linear",
+                            position: "bottom" }
+                        ] 
+                    } 
+                } 
+            });
+        }
+    </script>
+</html>

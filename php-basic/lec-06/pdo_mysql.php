@@ -7,7 +7,7 @@ $password = "";
 $usuario = 'teste';
 
 try {
-    $conn = new PDO('mysql:host=localhost;dbname=pweb', $username, $password);
+    $conn = new PDO('mysql:host=localhost;dbname=si_pweb', $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare('SELECT * FROM usuarios WHERE nome_usuario = :usuario');

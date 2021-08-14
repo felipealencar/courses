@@ -2,7 +2,7 @@
 	$server = "localhost";
 	$username = "root";
 	$password = "";
-	$database = "pweb";
+	$database = "si_pweb";
 	
 	$connection = new mysqli($server, $username, $password, $database);
 	
