@@ -45,6 +45,9 @@
 
             for (let i = 0; i < dadosDeTreinamentoY.length; i++) {
                 plotData.push({ x: dadosDeTreinamentoX[i], y: dadosDeTreinamentoY[i] });
+
+                // novo de cálculo da equação da reta para gerar o gráfico, utilizando as constantes a e b
+                // obtidas pelo train.sgd.
                 let y = dadosDeTreinamentoX[i]*a.dataSync()[0] + b.dataSync()[0];
                 plotLinearRegressionData.push({x: dadosDeTreinamentoX[i], y: y});
             }
