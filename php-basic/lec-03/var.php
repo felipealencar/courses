@@ -1,3 +1,0 @@
-<?php 
-    $curso = "PHP BASIC";
-?>
