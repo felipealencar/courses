@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /php-advanced
 /php-basic
 /system-analysis-and-design
@@ -5,3 +6,28 @@
 /javascript-advanced
 /javascript-basic
 /machine-learning
+=======
+/.vscode/launch.json
+
+### Laravel ###
+vendor/
+node_modules/
+npm-debug.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
+.env
+Homestead.yaml
+Homestead.json
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+.rocketeer/
+>>>>>>> php-basic
