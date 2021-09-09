@@ -1,8 +1,7 @@
-Repositório com os códigos-fonte utilizados nas aulas do curso de PHP Básico ministrado originalmente no Instituto Federal de Alagoas (IFAL) - Campus Arapiraca.
+## Resumo
+Repositório com os códigos-fonte utilizados nas aulas do curso de PHP Básico ministrado pelo prof. Felipe Alencar <<felipe.alencar@ifal.edu.br>> originalmente no Instituto Federal de Alagoas (IFAL) - Campus Arapiraca.
 
-## Slides relacionados: 
-
-# Conteúdo
+## Conteúdo
 Aula 02 - Hello World com PHP | Slides
 Aula 03 - Laços de Repetição e Comandos Condicionais | Slides
 Aula 04 - Formulário HTML e PHP | Slides
