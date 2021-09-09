@@ -6,6 +6,7 @@
 /javascript-advanced
 /javascript-basic
 /machine-learning
+<<<<<<< HEAD
 =======
 /.vscode/launch.json
 
@@ -31,3 +32,7 @@ Homestead.json
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 >>>>>>> php-basic
+=======
+/special-topics/machine-learning/lec-11/node_modules
+/.vscode
+>>>>>>> special-topics
