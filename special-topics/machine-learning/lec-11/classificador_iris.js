@@ -21,4 +21,13 @@ classifier.train(trainingSet, predictions);
 // classifica o conjunto de dados de treinamento de acordo com a árvore de decisão
 // o ideal seria separar o conjunto de dados em treinamento e teste e verificar a precisão da árvore
 const result = classifier.predict(trainingSet);
-console.log(result);
+const output = result.map(function(elem) {
+    if (elem == 0){
+        return 'setosa';
+    } else if (elem == 1){
+        return 'versicolor';
+    } else if (elem == 2){
+        return 'virginica';
+    }
+})
+console.log(output);
