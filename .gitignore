@@ -36,3 +36,4 @@ Homestead.json
 /special-topics/machine-learning/lec-11/node_modules
 /.vscode
 >>>>>>> special-topics
+.DS_Store
