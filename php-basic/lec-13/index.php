@@ -73,7 +73,7 @@
     .catch((error) => console.error('Erro:', error.message || error))
 
     $(document).ready(function() {
-        /// Quando usuário clicar em salvar será feito todos os passo abaixo
+        /// Quando usuário clicar em salvar serão feitos todos os passos abaixo
         $('#salvar').click(function() {
 
             var dados = $('#cadUsuario').serialize();
@@ -86,7 +86,8 @@
                     data: dados,
                     success: function(response) {
                         location.reload();
-                    }
+                    },
+                    error: function(req, err){ console.log('Mensagem:' + err); }
             });
 
             return false;
