@@ -7,7 +7,7 @@
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous">
         </script>
-        <link rel="stylesheet" href="estilo.css" type="text/css"/>
+        <link rel="stylesheet" href="./estilo.css" type="text/css"/>
     </head>
     <body>
         <a href="#janela1" rel="modal">Novo Usuario</a>
@@ -21,13 +21,13 @@
                     <th>Senha</th>
                 </tr>
                 <?php
-//precisamos chamar esta página para realizarmos as queries com o banco
+                //precisamos chamar esta página para realizarmos as queries com o banco
                 include 'conexao.php';
-// Select que traz todos os usuários cadastrados no banco de dados
-                $select = "SELECT * FROM USUARIO";
+                // Select que traz todos os usuários cadastrados no banco de dados
+                $select = "SELECT * FROM usuarios";
                 $result = mysqli_query($connect, $select); //resultado do select
 
-//Enquanto existir usuários no banco ele insere uma nova linha e exibe os dados
+                //Enquanto existir usuários no banco ele insere uma nova linha e exibe os dados
                 while ($row = mysqli_fetch_array($result)) {
                     $id = $row['usuario_id'];
                     $nome = $row['nome'];
@@ -45,7 +45,6 @@
             </table>
 
 <!-- Modal que é aberto ao clicar novo usuário-->
-
             <div class="window" id="janela1">
                 <a href="#" class="fechar">X Fechar</a>
                 <h4>Cadastro de usuario</h4>
@@ -63,6 +62,16 @@
 </html>
 
 <script type="text/javascript" language="javascript">
+    //Com JavaScript puro:
+
+    const URL = 'salvar.php'
+    fetch(`${URL}`)
+        .then((body) => body.json())
+        .then((data) => {
+            console.log(data)
+    })
+    .catch((error) => console.error('Erro:', error.message || error))
+
     $(document).ready(function() {
         /// Quando usuário clicar em salvar será feito todos os passo abaixo
         $('#salvar').click(function() {
