@@ -1,6 +1,6 @@
 <?php
 //conexão com o servidor
-$connect = mysqli_connect("localhost", "root", "");
+$connect = mysqli_connect("127.0.0.1", "root", "");
 
 // Caso a conexão seja reprovada, exibe na tela uma mensagem de erro
 if (!$connect) die ("<h1>Falha na conexão com o Banco de Dados!</h1>");
