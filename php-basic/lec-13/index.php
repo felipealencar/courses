@@ -7,7 +7,7 @@
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous">
         </script>
-        <link rel="stylesheet" href="./estilo.css" type="text/css"/>
+        <link rel="stylesheet" href="estilo.css" type="text/css"/>
     </head>
     <body>
         <a href="#janela1" rel="modal">Novo Usuario</a>
@@ -19,6 +19,7 @@
                     <th>Nome</th> <!-- <th> -> table header -->
                     <th>Email</th>
                     <th>Senha</th>
+                    <th>Ação</th>
                 </tr>
                 <?php
                 //precisamos chamar esta página para realizarmos as queries com o banco
@@ -29,7 +30,7 @@
 
                 //Enquanto existir usuários no banco ele insere uma nova linha e exibe os dados
                 while ($row = mysqli_fetch_array($result)) {
-                    $id = $row['usuario_id'];
+                    $id = $row['id_usuario'];
                     $nome = $row['nome'];
                     $email = $row['email'];
                     $senha = $row['senha'];
@@ -39,12 +40,13 @@
                             <td>$nome</td>
                             <td>$email</td>
                             <td>$senha</td>
+                            <td><button id='excluir' onclick='excluir($id);'>Excluir</button></td>
                         </tr>";
                 }
                 ?>
             </table>
 
-<!-- Modal que é aberto ao clicar novo usuário-->
+            <!-- Modal que é aberto ao clicar novo usuário-->
             <div class="window" id="janela1">
                 <a href="#" class="fechar">X Fechar</a>
                 <h4>Cadastro de usuario</h4>
@@ -62,15 +64,20 @@
 </html>
 
 <script type="text/javascript" language="javascript">
-    //Com JavaScript puro:
-
-    const URL = 'salvar.php'
-    fetch(`${URL}`)
-        .then((body) => body.json())
-        .then((data) => {
-            console.log(data)
-    })
-    .catch((error) => console.error('Erro:', error.message || error))
+    function excluir(id){
+        var id = {id: id};
+        $.ajax({
+            type: 'POST',
+            url: 'excluir.php',
+            async: true,
+            data: id,
+            success: function(response) {
+                console.log(response);
+                location.reload();
+            },
+            error: function(req, err){ console.log('Mensagem:' + err); }
+        });
+    }
 
     $(document).ready(function() {
         /// Quando usuário clicar em salvar serão feitos todos os passos abaixo
@@ -85,6 +92,7 @@
                     async: true,
                     data: dados,
                     success: function(response) {
+                        console.log(response);
                         location.reload();
                     },
                     error: function(req, err){ console.log('Mensagem:' + err); }
