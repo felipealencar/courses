@@ -9,8 +9,7 @@ RUN apt-get update && apt-get install -y apt-transport-https\
  && apt-get clean -y \
  && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
  && mkdir /var/run/mysqld \
- && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade \
- && apt-get install php-soap
+ && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
 
 RUN a2enmod rewrite
@@ -57,6 +56,7 @@ COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
 USER gitpod
 
 RUN echo ". /etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
+RUN apt-get install php-soap
 
 # Local environment variables
 # C9USER is temporary to allow the MySQL Gist to run
