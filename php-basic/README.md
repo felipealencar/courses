@@ -3,7 +3,21 @@ Repositório com os códigos-fonte utilizados nas aulas do curso de PHP Básico 
 ## Instruções:
 Para executar os códigos das aulas mais facilmente, utilize a extensão gitpod em seu navegador Chrome. Com a extensão instalada, basta clicar no botão gitpod que um ambiente Apache+PHP+MySQL será configurado para você.
 
-## Slides relacionados: 
+### Executando os códigos:
+Na raiz do repositório, execute o comando:
+
+```
+php -S localhost:8080
+```
+
+Permita que o Gitpod abra uma janela de navegador, e no endereço digite o caminho para a aula desejada. Por exemplo, acessando a aula 02:
+
+```
+https://8080-red-trout-4k9z8wco.ws-us17.gitpod.io/php-basic/lec-02/index.php
+```
+
+<img src="exemplo.png"/>
+
 
 # Conteúdo
 Aula 02 - Hello World com PHP | Slides
