@@ -56,7 +56,7 @@ COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
 USER gitpod
 
 RUN echo ". /etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
-RUN apt-get install php-soap
+RUN sudo apt-get install php-soap
 
 # Local environment variables
 # C9USER is temporary to allow the MySQL Gist to run
