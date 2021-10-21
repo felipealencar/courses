@@ -1,9 +1,10 @@
 FROM gitpod/workspace-full
 
+
 USER root
 
 RUN apt-get update && apt-get install -y apt-transport-https\
- && apt-get install -y php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
+ && apt-get install -yq php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
  && apt-get install -y php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
  && apt-get install -y mysql-server \
  && apt-get clean -y \
