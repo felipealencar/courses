@@ -1,10 +1,11 @@
 <html>
-<body>
-    <form action="">
-        <input type="text" name="nome"> <br/>
-        <input type="text" name="preco"> <br/>
-        <input type="number" name="quantidade"> <br/>
-        <button>Cadastrar</button>
-    </form>
-</body>
+    <body>
+        <form action="" method="POST">
+            @csrf
+            <input type="text"name="nome" placeholder="Nome do produto"/>
+            <input type="number"name="preco" placeholder="Preço do produto"/>
+            <input type="number"name="quantidade" placeholder="quantidade"/>
+            <button>Cadastrar</button>
+        </form>
+    </body>
 </html>
