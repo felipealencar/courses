@@ -55,5 +55,12 @@ class ProdutosController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function destroy(Produto $produto)
+    {
+        $produto->delete();
+
+        return redirect()->route('produtos.index')
+            ->with('success', 'Produto excluído com sucesso');
+    }
 
 }
