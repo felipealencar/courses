@@ -12,7 +12,7 @@
                 <td>{{ $produto->preco }}</td>
                 <td>{{ $produto->quantidade }}</td>
                 <td>
-                    <form action="{{ route('produtos.destroy', $produto->id) }}">
+                    <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST">
                         <a href="{{ route('produtos.edit', $produto->id) }}">Editar</a>
                         @csrf
                         @method('DELETE')
@@ -23,3 +23,4 @@
             </tr>
         @endforeach
     </table>
+
