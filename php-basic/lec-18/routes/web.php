@@ -19,4 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos/novo', [ProdutosController::class, 'create']);
+Route::resource('produtos', ProdutosController::class);
