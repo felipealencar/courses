@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tensorflow BlazeFace</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+    
+    <div id="face-finder">
+        <canvas id="canvas"></canvas>
+        <img src="http://127.0.0.1:8081/image.jpg" crossorigin='anonymous'/>
+        <p id="status">Procurando, não deve demorar muito.</p>
+      </div>
+  </body>
+  <script src="script.js"></script>
+</html>

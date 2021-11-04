@@ -1,0 +1,23 @@
+#face-finder {
+    max-width: 600px;
+  }
+  #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  #status {
+    width: 100%;
+    background: black;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 1em 0;
+    font-family: sans-serif;
+  }
