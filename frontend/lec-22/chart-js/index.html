@@ -1,0 +1,43 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    
+    <body>
+        <canvas id="chart">
+        </canvas>
+    </body>
+
+    <script>
+        d3.csv('http://0.0.0.0:8080/frontend/lec-22/chart-js/atp_wta.csv').then(criarGrafico);
+
+        /*var chart = new Chart('chart', {
+            type: 'horizontalBar',
+            data: {
+                labels: ['A', 'B', 'C'],
+                datasets: [
+                    {
+                        data: [10, 20, 30]
+                    }
+                ]
+            }
+        });*/
+
+        function criarGrafico(jogadores) {
+            var rotulosComNomesDosJogadores = jogadores.map(function(d) {return d.Nome});
+            var dadosDasSemanas = jogadores.map(function(d) {return d.Semanas});
+            var chart = new Chart('chart', {
+                type: 'horizontalBar',
+                data: {
+                    labels: rotulosComNomesDosJogadores,
+                    datasets: [
+                        {
+                        data: dadosDasSemanas
+                        }
+                    ]
+                }
+            });
+        }
+
+
+    </script>
+</html>
