@@ -27,11 +27,31 @@
             var dadosDasSemanas = jogadores.map(function(d) {return d.Semanas});
             var chart = new Chart('chart', {
                 type: 'horizontalBar',
+                options: {
+                    scales: {
+                        xAxes: [
+                            {
+                                scaleLabel: {
+                                display: true,
+                                labelString: 'Número de semanas em primeiro lugar no ranking.',
+                                fontSize: 16
+                                }
+                            }
+                        ]
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                            text: 'Semanas'
+                        }
+                    }
+                },    
                 data: {
                     labels: rotulosComNomesDosJogadores,
                     datasets: [
                         {
-                        data: dadosDasSemanas
+                            label: 'Semanas',
+                            data: dadosDasSemanas
                         }
                     ]
                 }
