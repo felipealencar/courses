@@ -8,5 +8,5 @@ Após baixar e extrair os arquivos, entre no diretório lec-22 e execute o segui
 
 ## Executando
 Utilize o artisan para iniciar o servidor e disponibilizar a aplicação criada na aula 22:
-```php artisan serve```
+```php artisan serve``` 
 
