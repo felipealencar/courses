@@ -4,7 +4,7 @@ var app = express();
 
 app.use(express.static('public'));
 
-MongoClient.connect('mongodb+srv://admin:admin@cluster0.jqvpq.mongodb.net/pweb?retryWrites=true&w=majority', function(err, client){
+MongoClient.connect('mongodb+srv://admin:<password>@cluster0.jqvpq.mongodb.net/pweb?retryWrites=true&w=majority', function(err, client){
     if (err) throw err;
 
     let db = client.db('pweb');
