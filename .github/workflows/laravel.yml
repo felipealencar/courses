@@ -41,9 +41,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Deploy Heroku
+        working-directory: 
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
+        with: ./php-advanced/lec-02/phpunit-tests
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "phpunit-tests" #Must be unique in Heroku
           heroku_email: "felipealencarlopes@gmail.com"
