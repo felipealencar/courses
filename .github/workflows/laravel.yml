@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ php-advances ]
+    branches: [ php-advanced ]
   pull_request:
     branches: [ master ]
 
@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: php-actions/composer@v6
     - uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
