@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ php-advanced ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
