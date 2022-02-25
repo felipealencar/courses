@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Heroku
-        working-directory: 
+        working-directory: php-advanced/lec-02/phpunit-tests
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with: ./php-advanced/lec-02/phpunit-tests
