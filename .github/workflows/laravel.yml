@@ -2,9 +2,13 @@ name: Laravel
 
 on:
   push:
-    branches: [ master ]
+    branches: [ php-advances ]
   pull_request:
     branches: [ master ]
+
+defaults:
+  run:
+    working-directory: php-advanced/lec-02/phpunit-tests
 
 jobs:
   laravel-tests:
