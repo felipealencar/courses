@@ -53,5 +53,5 @@ jobs:
           heroku_app_name: "phpunit-tests" #Must be unique in Heroku
           heroku_email: "felipealencarlopes@gmail.com"
           branch: "php-advanced"
-          useforce: true
+          dontuseforce: false
 
