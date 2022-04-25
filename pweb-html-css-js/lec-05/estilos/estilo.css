@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+body{
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+h1{
+    margin: 0;
+    padding-top: 5%;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+#container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#navbar{
+    height: 5em;
+    line-height: 5em;
+    min-height: 50px;
+    background-color: black;
+    color: white;
+}
+
+#navbar img{
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 1%;
+}
+
+#navbar a{
+    float: left;
+    margin-left: 3%;
+}
+
+#principal{
+    color: white;
+    margin: 0;
+    padding: 0;
+    padding-top: 20%;
+    height: 80%;
+    background-image: url('../imagens/fundo.jpg');
+    background-size: 100%;
+    opacity: 0.9;
+    text-align: center;
+}
+
+#sobre{
+    background-color: #E9DCCD;
+    padding-bottom: 5%;
+}
+
+#sobre p{
+    padding: 0 10%;
+}
+
+#produtos{
+    color: white;
+    background-color: #613A43;
+}
+
+#fotos-produtos{
+    width: 80%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+#fotos-produtos div{
+    float: left;
+    margin: 1.5%;
+    width: 30%;
+    text-align: center;
+}
+
+#fotos-produtos img{
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+}
