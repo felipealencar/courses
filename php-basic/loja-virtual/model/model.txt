@@ -1,0 +1,7 @@
+Modelos
+- Produto (id, nome, descrição, preço, caminho de imagem, categorias, quantidade, ncm)
+- Categoria (id, nome)
+- Carrinho (id, id de Produto, id do Cliente, quantidade)
+- Cliente (id, nome, cpf, senha)
+- Funcionário (id, nome, usuario, senha, tipo)
+- Compras (id, id do Carrinho, valor total, forma de pagamento)
