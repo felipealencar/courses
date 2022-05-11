@@ -10,7 +10,7 @@ class ProdutoDAO{
     }
 
     function store($produto){
-        $stmt = $this->conexao->prepare("INSERT INTO produtos (nome, descricao,	preco, caminho_imagem, categorias, quantidade,ncm) VALUES (nome = :nome, descricao = :descricao, preco = :preco, caminho_imagem = :caminho_imagem, categorias = :categorias, quantidade = :quantidade, ncm = :ncm)");
+        $stmt = $this->conexao->prepare("INSERT INTO produtos (nome, descricao,	preco, caminho_imagem, categorias, quantidade,ncm) VALUES (:nome, :descricao, :preco, :caminho_imagem, :categorias, :quantidade, :ncm)");
         $stmt->bindValue(':nome', $produto->getNome());
         $stmt->bindValue(':descricao', $produto->getDescricao());
         $stmt->bindValue(':categorias', $produto->getCategorias());
