@@ -8,11 +8,11 @@ https://github.com/felipealencar/courses/tree/php-basic.
 As this repository is branch-based, each course has its branch. 
 
 ## command
-'''git clone -b <branch-name> git@github.com:felipealencar/courses.git'''
+```git clone -b <branch-name> git@github.com:felipealencar/courses.git```
   
 ## example
 If you're a PHP Basic course's student, you can clone its branch using the following command:
-'''git clone -b php-basic git@github.com:felipealencar/courses.git'''
+```git clone -b php-basic git@github.com:felipealencar/courses.git```
   
 # gitpod support
 Each branch has its .gp directory (_in progress_) with a Dockerfile environment definition considering the programming language and libraries used in such branch-related course.
