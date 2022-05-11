@@ -12,6 +12,7 @@ As this repository is branch-based, each course has its branch.
   
 ## example
 If you're a PHP Basic course's student, you can clone its branch using the following command:
+
 ```git clone -b php-basic git@github.com:felipealencar/courses.git```
   
 # gitpod support
