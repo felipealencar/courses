@@ -7,6 +7,13 @@ require_once 'Database.class.php';
         private $email;
         private $senha;
 
+        private $conexao;
+
+        function __construct(){
+            $Database = new Database();
+            $this->conexao = $Database->getConexao();
+        }
+
         /**
          * Get the value of senha
          */ 
