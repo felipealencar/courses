@@ -83,63 +83,23 @@
                             <td><?=$produto['categorias']?></td>
                             <td><?=$produto['quantidade']?></td>
                             <td><?=$produto['ncm']?></td>
-            <?php
-                        echo("<th scope='row' class='row'>  <button class='btn btn-warning col-6' data-bs-toggle='modal' data-bs-target='#produto-{$produto['id']}'>Atualizar</button>");
-                        echo("
+                            <td scope='row' class='row'> 
+                                <button class='btn btn-warning col-6' data-bs-toggle='modal' data-bs-target='#produto-<?=$produto['id']?>'> Atualizar</button>");
+
                                 <form action='index.php' method='post' class='col-6'>
                                     <input type='hidden' name='classe' value='Produtos'>
                                     <input type='hidden' name='acao' value='delete'>
-                                    <input type='hidden' name='id' value='{$produto['id']}'>
-                    
+                                    <input type='hidden' name='id' value='<?=$produto['id']?>'>
                                     <button class='btn btn-danger' type='submit'>Deletar</button>
                                 </form>
-                            </th>"
-                        );
-                        echo("</tr>");
+                            </th>
+                        </tr>
+            <?php
                     }
                 }
             ?>
         </tbody>
     </table>
-
-    <?php
-        if(isset($_REQUEST['produtos'])){
-            foreach($_REQUEST['produtos'] as $produto){
-                echo("
-                <div class='modal' tabindex='-1' id='produto-{$produto['id']}'>
-                    <div class='modal-dialog'>
-                        <form action='index.php' method='POST'>
-                            <div class='modal-content'>
-                                <div class='modal-header'>
-                                    <h5 class='modal-title'>Atualizar o Produto - ID {$produto['id']}</h5>
-                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                </div>
-                                <div class='modal-body'>
-
-                                <input type='hidden' name='classe' value='Produtos'>
-                                <input type='hidden' name='acao' value='update'>
-                                <input type='hidden' name='id' value='{$produto['id']}'>
-
-                                    Nome: <input class='form-control' name='nome' value='{$produto['nome']}'></input><br>
-                                    Descrição: <input class='form-control' name='descricao' value='{$produto['descricao']}'></input><br>
-                                    Categorias: <input class='form-control' name='categorias' value='{$produto['categorias']}'></input><br>
-                                    Quantidade: <input class='form-control' name='quantidade' value='{$produto['quantidade']}'></input><br>
-                                    Preço: <input class='form-control' name='preco' value='{$produto['preco']}'></input><br>
-                                    NCM: <input class='form-control' name='ncm' value='{$produto['ncm']}'></input><br>
-                                    Imagem: <input class='form-control' name='caminho_imagem' value='{$produto['caminho_imagem']}'></input><br>
-
-                                </div>
-                                <div class='modal-footer'>
-                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
-                                    <button type='submit' class='btn btn-primary'>Atualizar produto</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>");
-            }
-        }
-    ?>
     
     <div class="modal" tabindex="-1" id="cadastrarProduto">
         <div class="modal-dialog">
