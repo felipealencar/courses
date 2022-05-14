@@ -1,14 +1,20 @@
 <?php
-class Database{
-    public static $conexao = null;
+class Database {
 
-    public function __construct(){}
+    private $username = "root";
+    private $senha = "";
+    private $database = "pweb";
+    private $conexao;
 
-    public function getInstancia(){
-        if(!isset(self::$conexao)){
-            self::$conexao = new PDO('mysql:host=localhost; dbname=pweb', 'root', '');
-        }
-
-        return self::$conexao;
+    function __construct(){
+        $this->conexao = new PDO("mysql:host=localhost;
+                                dbname=$this->database", 
+                                $this->username, 
+                                $this->senha);
     }
+
+    function getConexao(){
+        return $this->conexao;
+    }
+
 }

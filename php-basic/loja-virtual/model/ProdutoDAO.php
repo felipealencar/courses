@@ -20,4 +20,13 @@ class ProdutoDAO{
         $stmt->bindValue(':quantidade', $produto->getQuantidade());
         return $stmt->execute();
     }
+
+    function list(){
+        $sql = "SELECT * FROM produtos";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
 }
