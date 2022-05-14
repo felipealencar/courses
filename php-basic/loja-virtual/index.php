@@ -1,6 +1,6 @@
 <?php
 $classe = $_GET['classe'];
-$metodo = $_GET['acao'];
+$metodo = $_GET['metodo'];
 
 $classe .= 'Controller';
 

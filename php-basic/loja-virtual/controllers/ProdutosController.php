@@ -20,6 +20,11 @@ class ProdutosController{
             $_REQUEST['sucesso'] = true;
             require_once 'view/produto.php';
         }
+    }
 
+    public function list(){
+        $this->produtoDao = new ProdutoDAO();
+        $_REQUEST['produtos'] = $this->produtoDao->list();
+        require_once 'view/exibirProdutos.php';
     }
 }
