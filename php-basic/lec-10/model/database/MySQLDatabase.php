@@ -9,9 +9,18 @@ class MySQLDatabase implements IDatabase{
     private $tableName;
 
 	public function __construct($host = null, $user = null, $password = null, $dbname = null){
+        $this->create();
         $this->connect();
 	}
 	 
+    public function create(){
+        $pdo = new PDO("mysql:host=$this->host", $this->user, $this->password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->dbname = "`".str_replace("`","``",$this->dbname)."`";
+        echo $pdo->query("CREATE DATABASE IF NOT EXISTS $this->dbname");
+        $pdo->query("use $this->dbname");
+    }
+
 	public function connect(){
         $this->conexao = new PDO("mysql:host=$this->host; 
                                     dbname=$this->dbname", 

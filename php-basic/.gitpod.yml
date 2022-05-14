@@ -1,6 +1,6 @@
 image:
   file: .gitpod.Dockerfile
-  context: .gp
+  context: php-basic/.gp
 ports:
 - port: 8001
   onOpen: notify
@@ -11,7 +11,7 @@ ports:
 - port: 3306
   onOpen: ignore
 tasks:
-- init: . ${GITPOD_REPO_ROOT}/.gp/install.sh
+- init: . ${GITPOD_REPO_ROOT}/php-basic/.gp/install.sh
 - name: Logs
   command: >
     mysqld --daemonize;
