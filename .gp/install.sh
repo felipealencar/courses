@@ -1,10 +1,10 @@
 git clone --depth 1 https://github.com/phpmyadmin/phpmyadmin.git
-cd phpmyadmin
+cd ./phpmyadmin
 composer update --no-dev
 yarn install
-cp ../.gp/config.inc.php .
+cp config.inc.php .
 # Cópia da chave para autenticação SSL.
-cp ../.gp/rds-combined-ca-bundle.pem .
+cp rds-combined-ca-bundle.pem .
 
 echo "Done"
 
