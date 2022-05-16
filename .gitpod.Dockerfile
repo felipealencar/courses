@@ -1,15 +1,14 @@
-FROM gitpod/workspace-mysql
+FROM gitpod/workspace-full
 
 
 USER root
 
 RUN apt-get update && apt-get install -y apt-transport-https\
- && apt-get install -yq php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-shmop php-soap php-xmlrpc php-xsl php-ldap \
+ && apt-get install -yq php-fpm php-cli php-bz2 php-bcmath php-gmp php-imap php-soap php-xmlrpc php-ldap \
  && apt-get install -y php-amqp php-apcu php-imagick php-memcached php-mongodb php-oauth php-redis\
  && apt-get install -y mysql-server \
  && apt-get clean -y \
  && rm -rf /var/cache/apt/* /var/lib/apt/lists/* /tmp/* \
- && mkdir /var/run/mysqld \
  && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
 
 

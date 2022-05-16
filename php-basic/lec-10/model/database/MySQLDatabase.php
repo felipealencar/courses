@@ -1,7 +1,7 @@
 <?php
  
 class MySQLDatabase implements IDatabase{
-    private $host = "localhost";
+    private $host = "127.0.0.1";
     private $user = "root";
     private $password = "";
     private $dbname = "pweb";
@@ -16,8 +16,7 @@ class MySQLDatabase implements IDatabase{
     public function create(){
         $pdo = new PDO("mysql:host=$this->host", $this->user, $this->password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->dbname = "`".str_replace("`","``",$this->dbname)."`";
-        echo $pdo->query("CREATE DATABASE IF NOT EXISTS $this->dbname");
+        $pdo->query("CREATE DATABASE IF NOT EXISTS $this->dbname");
         $pdo->query("use $this->dbname");
     }
 
@@ -26,6 +25,7 @@ class MySQLDatabase implements IDatabase{
                                     dbname=$this->dbname", 
                                     $this->user, 
                                     $this->password);
+        $this->conexao->setAttribute( PDO::ATTR_CASE, PDO::CASE_NATURAL );
 	}
 	 
 	public function insert($data){
@@ -36,7 +36,7 @@ class MySQLDatabase implements IDatabase{
     //Implementação do update usando MySQL
     }
          
-    public function select($columns='*', array $filters=null, $object=null){
+    public function select($columns='*', array $filters=null){
         $sql = "SELECT $columns FROM $this->tableName";
         $sql .= $filters ? " WHERE $filters" : "";
         $stmt = $this->conexao->prepare($sql);
