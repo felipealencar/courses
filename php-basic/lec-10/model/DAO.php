@@ -7,8 +7,8 @@ class DAO implements IDatabase{
 		$this->connect();
 	}
 	 
-    public function select($columns='*', array $filters=null, object $object=null){
-        return $this->adapter->select($columns, $filters, $object);
+    public function select($columns='*', array $filters=null){
+        return $this->adapter->select($columns, $filters);
     }
 
 	public function setTableName($name){

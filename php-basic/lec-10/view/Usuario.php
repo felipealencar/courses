@@ -1,6 +1,5 @@
 <?php
     $usuarios = $_REQUEST['usuarios'];
-    print_r($usuarios);
 ?>
 <html>
     <body>
@@ -10,11 +9,11 @@
                 <th>Nome Completo</th>
                 <th>Email</th>
             </tr>
-            <?php foreach ($usuarios as $usuario): ?>
+            <?php foreach ($usuarios as $row): ?>
             <tr>
-                <td><?php echo $usuario->nomeCompleto;?></td>
-                <td><?php echo $usuario->nomeUsuario;?></td>
-                <td><?php echo $usuario->email;?></td>
+                <td><?=$row['nome_completo']?></td>
+                <td><?=$$row['nome'];?></td>
+                <td><?=$row['email'];?></td>
             </tr>
             <?php endforeach; ?>
         </table>
