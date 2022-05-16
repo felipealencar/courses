@@ -7,7 +7,7 @@ class UsuariosController {
     public function listar(){
         $usuarioDAO = new UsuarioDAO();
         $usuario = new Usuario();
-        $usuarios = $usuarioDAO->select("*", null, $usuario);
+        $usuarios = $usuarioDAO->select("*", null);
         $_REQUEST['usuarios'] = $usuarios;	
         require_once 'view/Usuario.php';
     }
