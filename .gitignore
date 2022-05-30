@@ -2,3 +2,12 @@
 .DS_Store
 pweb-html-css-js/.DS_Store
 pweb-html-css-js/lec-03/.DS_Store
+-DESKTOP-R177G0F.gitignore
+.gp/mysql.cnf
+.gp/mysql-bashrc-launch.sh
+.gp/install.Unix.sh
+.gp/install.sh
+.gp/config.inc.php
+.gp/client.cnf
+.gp/apache.conf
+.github/workflows/laravel.yml
