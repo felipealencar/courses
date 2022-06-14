@@ -7,10 +7,9 @@
 /machine-learning
 /special-topics/machine-learning/lec-11/node_modules
 /special-topics/machine-learning/lec-15/node_modules
-/.vscode
+.vscode
 javascript-advanced/.DS_Store
 /pweb-html-css-js/.DS_Store
-/.DS_Store
+.DS_Store
 php-basic/lec-22/artisan
 php-basic/lec-22/artisan
-.github/workflows/laravel.yml
