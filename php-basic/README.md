@@ -16,10 +16,10 @@ Permita que o Gitpod abra uma janela de navegador, e no endereço digite o camin
 https://8080-red-trout-4k9z8wco.ws-us17.gitpod.io/php-basic/lec-02/index.php
 ```
 
+<img src="exemplo.png"/>
+
 ### Para implementações que precisem do banco de dados:
 <b>Anteção:</b>Por algum motivo, o arquivo ```mysql-bashrc-launch.sh``` está causando um erro ao ser executado automaticamente pelo ambiente do Gitpod. Atualmente, para resolver o problema, é preciso executar o .sh de forma manual via terminal.
-
-<img src="exemplo.png"/>
 
 
 # Conteúdo
@@ -38,10 +38,4 @@ Aula 07 - Autoload e Orientação a Objetos | Slides
 Aula 10 - PHP com MVC | Slides
 
 Aula 13 - Introdução Laravel | Slides
-
-Aula 14 - API em PHP | Slides
-
-Aula 17 - SOAP com PHP | Slides
-
-Aula 18 - Introdução Laravel | Slides
 
