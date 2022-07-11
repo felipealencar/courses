@@ -1,0 +1,36 @@
+<html>
+    <body>
+        Resultado:
+        <div id="resultado"></div><br>
+        Número 1: <input id="n1" type="number"><br>
+        Número 2: <input id="n2" type="number"><br>
+        <button onclick="calcular('+')">+</button>
+        <button onclick="calcular('-')">-</button>
+        <button onclick="calcular('*')">*</button>
+        <button onclick="calcular('/')">/</button>
+    </body>
+    <script>
+        function calcular(operacao){
+            let n1 = parseInt(document.getElementById("n1").value);
+            let n2 = parseInt(document.getElementById("n2").value);
+            let resultado;
+
+            switch(operacao){
+                case '+':
+                    resultado = n1 + n2;
+                    break;
+                case '-':
+                    resultado = n1 - n2;
+                    break;
+                case '*':
+                    resultado = n1 * n2;
+                    break;
+                case '/':
+                    resultado = n1 / n2;
+                    break;
+            }
+            let divResultado = document.getElementById("resultado");
+            divResultado.innerText = resultado;
+        }
+    </script>
+</html>
