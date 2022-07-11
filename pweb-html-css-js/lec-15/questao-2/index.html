@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <form id="formulario">
+            <button onclick="adicionarCampo(event)">+</button>
+        </form>
+    </body>
+    <script>
+        var i = 0;
+        function adicionarCampo(event){
+            event.preventDefault();
+
+            let formularioHtml = document.getElementById("formulario");
+            let campoHtml = document.createElement("input");
+            campoHtml.setAttribute("id", "aluno-"+getLastId());
+            campoHtml.setAttribute("name", "aluno-nome");
+            campoHtml.setAttribute("type", "password");
+            formularioHtml.appendChild(campoHtml);
+
+        }
+
+        function getLastId(){
+            return i++;
+        }
+    </script>
+</html>
