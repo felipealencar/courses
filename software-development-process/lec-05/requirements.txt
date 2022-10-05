@@ -1,0 +1,5 @@
+- Clonar o repositório da disciplina
+- Fazer o switch para a branch "software-development-process"
+- Criar um novo ramo baseado na branch
+- Implementar aplicação de exemplo em Kotlin
+- Enviar o código da aplicação para o repositório e solicitar o pull request
