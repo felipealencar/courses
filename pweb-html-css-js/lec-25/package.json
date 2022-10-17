@@ -1,0 +1,15 @@
+{
+  "name": "lec-25",
+  "version": "1.0.0",
+  "description": "Primeira aplicação do Express com Mongo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "923",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^4.10.0"
+  }
+}
