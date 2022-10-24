@@ -1,6 +1,8 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const {MongoClient} = require('mongodb');
-const urlMongo = "mongodb+srv://<usuário>:<senha>@cluster0.jqvpq.mongodb.net/?retryWrites=true&w=majority";
-var mongoClient = new MongoClient(urlMongo);
+const urlMongo = `${process.env.URL_MONGO}`;
+var mongoClent = new MongoClient(urlMongo);
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
