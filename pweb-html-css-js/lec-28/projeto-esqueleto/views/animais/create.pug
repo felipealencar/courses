@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  p= msg
+  form(action='create' method='POST')
+    input(name='nome' value='' placeholder='Insira o nome do animal')
+    input(type='submit')
+

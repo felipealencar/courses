@@ -1,7 +1,10 @@
+const ObjectId = require('mongoose').Types.ObjectId;
 const Animal = require('../models/animais');
 
-exports.list = (req, res) => {
-    res.send("NÃO IMPLEMENTADO AINDA");
+exports.list = async (req, res) => {
+    await Animal.find({}).exec(function(err, docs) {
+        res.render("animais/index", { animais : docs, msg : res.msg});
+    });
 }
 
 exports.show = (req, res) => {
@@ -9,13 +12,50 @@ exports.show = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    res.send(`NÃO IMPLEMENTADO AINDA: animal create POST`);
+    if (req.method == "POST") {
+        const animalDocument = new Animal({
+            nome: req.body.nome
+        });
+        animalDocument
+            .save()
+            .then(result => {
+                res.render("animais/create", { msg: 'Animal cadastrado com sucesso.' });
+            })
+            .catch(err => {
+                res.status(500).json({ error: err });
+            });
+    } else {
+        res.render('animais/create');
+    }
 }
 
-exports.update = (req, res) => {
-    res.send(`NÃO IMPLEMENTADO AINDA: animal update PATCH`);
+exports.update = async (req, res) => {
+    if(req.method == "POST"){
+        const filter = { _id: new ObjectId(req.body.id) };
+        console.log(filter);
+        const update = { nome: req.body.nome };
+        console.log(update);
+        await Animal.findOneAndUpdate(filter, update).then(function (err, result) {
+            console.log(req.body.nome);
+            msg = "Animal atualizado com sucesso!";
+            res.msg = msg;
+            exports.list(req, res);
+        });
+    } else {
+        await Animal.findOne({ _id : new ObjectId(req.params.animalId)}).then(function (result) {
+            //console.log(result);
+            res.render(`animais/update`, { doc : result });
+        })
+        
+    }
+
 }
 
-exports.delete = (req, res) => {
-    res.send(`NÃO IMPLEMENTADO AINDA: animal delete DELETE`);
+exports.delete = async (req, res) => {
+    var msg;
+    await Animal.findOneAndDelete({ _id: new ObjectId(req.params.animalId) }).then(function (err, data) {
+        msg = "Animal excluído com sucesso!";
+        res.msg = msg;
+        exports.list(req, res);
+    });
 }
