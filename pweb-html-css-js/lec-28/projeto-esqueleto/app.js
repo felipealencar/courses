@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose');
-const urlMongo = `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}@cluster0.jqvpq.mongodb.net/?retryWrites=true&w=majority`;
+const urlMongo = `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}@cluster0.jqvpq.mongodb.net/pweb?retryWrites=true&w=majority`;
 console.log(urlMongo)
 var createError = require('http-errors');
 var express = require('express');
@@ -12,6 +12,7 @@ var logger = require('morgan');
 mongoose.connect(urlMongo, { useNewUrlParser: true,
                           useUnifiedTopology: true});
 const dbConnection = mongoose.connection;
+
 dbConnection.on("error", console.error.bind(console, "Erro na conexão ao MongoDB."));
 
 var indexRouter = require('./routes/index');
