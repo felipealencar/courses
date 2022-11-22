@@ -26,26 +26,17 @@ exports.create = (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    if(req.method == "POST"){
-        const filter = { _id: new ObjectId(req.body.id) };
-        console.log(filter);
-        const update = { nome: req.body.nome };
-        console.log(update);
-        await Animal.findOneAndUpdate(filter, update).then(function (err, result) {
-            console.log(req.body.nome);
-            msg = "Animal atualizado com sucesso!";
-            // res => response => resposta 
-            res.msg = msg;
-            exports.list(req, res);
-        });
-    } else {
-        await Animal.findOne({ _id : new ObjectId(req.params.animalId)}).then(function (result) {
-            //console.log(result);
-            res.render(`animais/update`, { doc : result });
-        })
-        
-    }
-
+    const filter = { _id: new ObjectId(req.body.id) };
+    console.log(filter);
+    const update = { nome: req.body.nome };
+    console.log(update);
+    await Animal.findOneAndUpdate(filter, update).then(function (err, result) {
+        console.log(req.body.nome);
+        msg = "Animal atualizado com sucesso!";
+        // res => response => resposta 
+        res.msg = msg;
+        exports.list(req, res);
+    });
 }
 
 exports.delete = async (req, res) => {
