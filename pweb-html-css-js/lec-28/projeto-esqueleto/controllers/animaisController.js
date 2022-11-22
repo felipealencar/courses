@@ -38,6 +38,7 @@ exports.update = async (req, res) => {
         await Animal.findOneAndUpdate(filter, update).then(function (err, result) {
             console.log(req.body.nome);
             msg = "Animal atualizado com sucesso!";
+            // res => response => resposta 
             res.msg = msg;
             exports.list(req, res);
         });
