@@ -3,7 +3,7 @@ const Animal = require('../models/animais');
 
 exports.list = async (req, res) => {
     await Animal.find({}).exec(function(err, docs) {
-        res.render("animais/index", { animais : docs, msg : res.msg});
+        res.status(200).json(docs);   
     });
 }
 
@@ -12,21 +12,17 @@ exports.show = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    if (req.method == "POST") {
-        const animalDocument = new Animal({
-            nome: req.body.nome
+    const animalDocument = new Animal({
+        nome: req.body.nome
+    });
+    animalDocument
+        .save()
+        .then(result => {
+            res.status(201).json({ msg: 'Animal cadastrado com sucesso.'});
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
         });
-        animalDocument
-            .save()
-            .then(result => {
-                res.render("animais/create", { msg: 'Animal cadastrado com sucesso.' });
-            })
-            .catch(err => {
-                res.status(500).json({ error: err });
-            });
-    } else {
-        res.render('animais/create');
-    }
 }
 
 exports.update = async (req, res) => {
