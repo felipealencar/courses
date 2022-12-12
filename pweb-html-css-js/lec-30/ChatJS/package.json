@@ -1,0 +1,14 @@
+{
+  "name": "chatjs",
+  "version": "1.0.0",
+  "description": "Código fonte do projeto publicado na Revista Front-End da DevMedia.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.5.4"
+  }
+}
