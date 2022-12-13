@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <form>
+            Usuário:
+            <input type="text" id="usuario" name="usuario">
+            <br>
+            Senha
+            <input type="password" id="senha" name="senha">
+            <br>
+            <input type="submit" onclick="validarLogin();">
+        </form>
+        <script>
+            function validarLogin(){
+                var preenchidos = false;
+                var usuario = document.getElementById("usuario");
+                var senha = document.getElementById("senha");
+
+                if(usuario.value != '' && senha.value != ''){
+                    preenchidos = true;
+                }
+
+                if(!preenchidos){
+                    alert("Os campos de login não foram preenchidos.");
+                }
+            }
+        </script>
+    </body>
+</html>

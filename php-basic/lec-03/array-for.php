@@ -1,0 +1,6 @@
+<?php
+    $numeros = array(1,3,9,4,5,8,2,6,7,0);
+    for ($i=0; $i < 10; $i++) { 
+        echo "Chave: " . $i . "Valor: " . $numeros[$i];
+    }
+?>

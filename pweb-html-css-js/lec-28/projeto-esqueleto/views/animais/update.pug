@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  p Atualizando animal de id #{doc._id} e nome #{doc.nome}
+  form(action='update' method='POST')
+    input(type='hidden' name='id' value=doc._id)
+    input(name='nome' placeholder=doc.nome)
+    input(type='submit')
+
