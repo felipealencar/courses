@@ -1,43 +1,46 @@
-# Inteligência Artificial
+# Artificial Intelligence
 
-> Disciplina ministrada pelo **prof. Felipe Alencar** no
-> **IFAL — Campus Arapiraca**.
-> Esta branch faz parte do repositório [`courses`](https://github.com/felipealencar/courses)
-> (organizado por branches). Veja o [índice de disciplinas](https://github.com/felipealencar/courses/tree/master).
+> Course taught by **prof. Felipe Alencar** at
+> **IFAL — Arapiraca Campus**.
+> This branch is the English version of the
+> [`artificial-intelligence`](https://github.com/felipealencar/courses/tree/artificial-intelligence)
+> course and is part of the [`courses`](https://github.com/felipealencar/courses)
+> repository (organized by branches). See the
+> [course index](https://github.com/felipealencar/courses/tree/master).
 
-Introdução prática aos principais paradigmas da Inteligência Artificial e do
-Aprendizado de Máquina, com exemplos implementados em **Python** e **Jupyter
+A hands-on introduction to the main paradigms of Artificial Intelligence and
+Machine Learning, with examples implemented in **Python** and **Jupyter
 Notebook**.
 
-## Ementa (conteúdo aula a aula)
+## Syllabus (lecture by lecture)
 
-| Aula | Tema | Materiais |
+| Lecture | Topic | Materials |
 | --- | --- | --- |
-| `lec-02` | Algoritmos Genéticos (otimização bioinspirada) | `algoritmo_genetico_besouro.py`, `besouros.csv` |
-| `lec-03` | Lógica Fuzzy (sistema de inferência) | `fuzzy_gorjeta.ipynb`, `fuzzy.txt` |
-| `lec-07` | Redes Neurais Artificiais — Classificação | `neural_network_classification.ipynb` |
-| `lec-09` | Aprendizado não supervisionado — Agrupamento K-Means | `exemplo_kmeans.ipynb` |
+| `lec-02` | Genetic Algorithms (bio-inspired optimization) | `beetle_genetic_algorithm.py`, `beetles.csv` |
+| `lec-03` | Fuzzy Logic (inference system) | `fuzzy_tipping.ipynb` |
+| `lec-07` | Artificial Neural Networks — Classification | `neural_network_classification.ipynb` |
+| `lec-09` | Unsupervised learning — K-Means clustering | `kmeans_example.ipynb` |
 
-## Pré-requisitos
+## Prerequisites
 
-- Lógica de programação e Python básico.
-- Noções de álgebra linear, estatística e probabilidade.
+- Programming logic and basic Python.
+- Notions of linear algebra, statistics and probability.
 
-## Ambiente e execução
+## Environment and execution
 
-Os exemplos usam Python 3 e bibliotecas científicas (NumPy, pandas,
+The examples use Python 3 and scientific libraries (NumPy, pandas,
 scikit-learn, scikit-fuzzy, etc.).
 
 ```bash
-# scripts .py
-python3 artificial-intelligence/lec-02/algoritmo_genetico_besouro.py
+# .py scripts
+python3 artificial-intelligence/lec-02/beetle_genetic_algorithm.py
 
-# notebooks .ipynb
+# .ipynb notebooks
 jupyter notebook
 ```
 
-## Como obter o código
+## Getting the code
 
 ```bash
-git clone -b artificial-intelligence git@github.com:felipealencar/courses.git
+git clone -b artificial-intelligence-en git@github.com:felipealencar/courses.git
 ```
