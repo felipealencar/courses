@@ -1,49 +1,51 @@
 # courses — prof. Felipe Alencar
 
-Repositório com livros-texto, slides e códigos das disciplinas que ministro no
-**Instituto Federal de Alagoas (IFAL) — Campus Arapiraca**.
+> 🇧🇷 [Leia em português](README.pt-BR.md)
 
-O repositório é **organizado por branches**: cada disciplina vive em sua própria
-branch e possui um `README.md` que funciona como **ementa/plano de ensino**
-(_syllabus_), descrevendo o conteúdo aula a aula e as instruções de execução.
+Repository with textbooks, slides and source code for the courses I teach at the
+**Federal Institute of Alagoas (IFAL) — Arapiraca Campus**.
 
-## Disciplinas
+The repository is **organized by branches**: each course lives in its own
+branch and has a `README.md` that works as a **syllabus/teaching plan**,
+describing the content lesson by lesson along with the instructions to run it.
 
-| Disciplina | Branch | Ementa |
+## Courses
+
+| Course | Branch | Syllabus |
 | --- | --- | --- |
-| Programação para Web (HTML, CSS e JS) | `pweb-html-css-js` | [ver ementa](https://github.com/felipealencar/courses/tree/pweb-html-css-js) |
-| PHP Básico | `php-basic` | [ver ementa](https://github.com/felipealencar/courses/tree/php-basic) |
-| PHP Avançado | `php-advanced` | [ver ementa](https://github.com/felipealencar/courses/tree/php-advanced) |
-| JavaScript Avançado | `javascript-advanced` | [ver ementa](https://github.com/felipealencar/courses/tree/javascript-advanced) |
-| Inteligência Artificial | `inteligencia-artificial` | [ver ementa](https://github.com/felipealencar/courses/tree/inteligencia-artificial) |
-| Artificial Intelligence (English) | `artificial-intelligence` | [view syllabus](https://github.com/felipealencar/courses/tree/artificial-intelligence) |
-| Tópicos Especiais (Blockchain & Machine Learning) | `special-topics` | [ver ementa](https://github.com/felipealencar/courses/tree/special-topics) |
-| Processo de Desenvolvimento de Software | `software-development-process` | [ver ementa](https://github.com/felipealencar/courses/tree/software-development-process) |
-| Introdução a Redes de Computadores | `computer-networks-intro` | [ver ementa](https://github.com/felipealencar/courses/tree/computer-networks-intro) |
+| Web Programming (HTML, CSS and JS) | `pweb-html-css-js` | [view syllabus](https://github.com/felipealencar/courses/tree/pweb-html-css-js) |
+| Basic PHP | `php-basic` | [view syllabus](https://github.com/felipealencar/courses/tree/php-basic) |
+| Advanced PHP | `php-advanced` | [view syllabus](https://github.com/felipealencar/courses/tree/php-advanced) |
+| Advanced JavaScript | `javascript-advanced` | [view syllabus](https://github.com/felipealencar/courses/tree/javascript-advanced) |
+| Inteligência Artificial (Portuguese) | `inteligencia-artificial` | [view syllabus](https://github.com/felipealencar/courses/tree/inteligencia-artificial) |
+| Artificial Intelligence | `artificial-intelligence` | [view syllabus](https://github.com/felipealencar/courses/tree/artificial-intelligence) |
+| Special Topics (Blockchain & Machine Learning) | `special-topics` | [view syllabus](https://github.com/felipealencar/courses/tree/special-topics) |
+| Software Development Process | `software-development-process` | [view syllabus](https://github.com/felipealencar/courses/tree/software-development-process) |
+| Introduction to Computer Networks | `computer-networks-intro` | [view syllabus](https://github.com/felipealencar/courses/tree/computer-networks-intro) |
 
-> A branch `gitpod` mantém a configuração de ambiente (Dockerfile/Gitpod)
-> compartilhada entre as disciplinas.
+> The `gitpod` branch keeps the environment configuration (Dockerfile/Gitpod)
+> shared across the courses.
 
-## Clonando uma disciplina específica
+## Cloning a specific course
 
-Como o repositório é organizado por branches, cada disciplina tem sua própria branch.
+Since the repository is organized by branches, each course has its own branch.
 
 ```bash
 git clone -b <branch-name> git@github.com:felipealencar/courses.git
 ```
 
-Exemplo — disciplina de PHP Básico:
+Example — Basic PHP course:
 
 ```bash
 git clone -b php-basic git@github.com:felipealencar/courses.git
 ```
 
-## Suporte a Gitpod
+## Gitpod support
 
-Algumas branches incluem um diretório `.gp` (_em progresso_) com a definição de
-ambiente (Dockerfile) considerando a linguagem e as bibliotecas usadas na
-disciplina correspondente.
+Some branches include a `.gp` directory (_work in progress_) with the
+environment definition (Dockerfile) considering the language and libraries used
+in the corresponding course.
 
-## Alunos e colaboradores
+## Students and contributors
 
 [@Manuel-Antunes](https://github.com/Manuel-Antunes)
