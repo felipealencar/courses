@@ -3,7 +3,7 @@
 > Course taught by **prof. Felipe Alencar** at
 > **IFAL — Arapiraca Campus**.
 > This branch is the English version of the
-> [`artificial-intelligence`](https://github.com/felipealencar/courses/tree/artificial-intelligence)
+> [`inteligencia-artificial`](https://github.com/felipealencar/courses/tree/inteligencia-artificial)
 > course and is part of the [`courses`](https://github.com/felipealencar/courses)
 > repository (organized by branches). See the
 > [course index](https://github.com/felipealencar/courses/tree/master).
@@ -42,5 +42,5 @@ jupyter notebook
 ## Getting the code
 
 ```bash
-git clone -b artificial-intelligence-en git@github.com:felipealencar/courses.git
+git clone -b artificial-intelligence git@github.com:felipealencar/courses.git
 ```
