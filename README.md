@@ -39,5 +39,5 @@ jupyter notebook
 ## Como obter o código
 
 ```bash
-git clone -b artificial-intelligence git@github.com:felipealencar/courses.git
+git clone -b inteligencia-artificial git@github.com:felipealencar/courses.git
 ```
