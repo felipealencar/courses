@@ -15,8 +15,8 @@ branch e possui um `README.md` que funciona como **ementa/plano de ensino**
 | PHP Básico | `php-basic` | [ver ementa](https://github.com/felipealencar/courses/tree/php-basic) |
 | PHP Avançado | `php-advanced` | [ver ementa](https://github.com/felipealencar/courses/tree/php-advanced) |
 | JavaScript Avançado | `javascript-advanced` | [ver ementa](https://github.com/felipealencar/courses/tree/javascript-advanced) |
-| Inteligência Artificial | `artificial-intelligence` | [ver ementa](https://github.com/felipealencar/courses/tree/artificial-intelligence) |
-| Artificial Intelligence (English) | `artificial-intelligence-en` | [view syllabus](https://github.com/felipealencar/courses/tree/artificial-intelligence-en) |
+| Inteligência Artificial | `inteligencia-artificial` | [ver ementa](https://github.com/felipealencar/courses/tree/inteligencia-artificial) |
+| Artificial Intelligence (English) | `artificial-intelligence` | [view syllabus](https://github.com/felipealencar/courses/tree/artificial-intelligence) |
 | Tópicos Especiais (Blockchain & Machine Learning) | `special-topics` | [ver ementa](https://github.com/felipealencar/courses/tree/special-topics) |
 | Processo de Desenvolvimento de Software | `software-development-process` | [ver ementa](https://github.com/felipealencar/courses/tree/software-development-process) |
 | Introdução a Redes de Computadores | `computer-networks-intro` | [ver ementa](https://github.com/felipealencar/courses/tree/computer-networks-intro) |
