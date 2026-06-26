@@ -1,22 +1,49 @@
-# courses - prof. felipe alencar
-A repository for saving textbooks, slides, and codes of my lectures @ IFAL - Campus Arapiraca.
+# Programação para Web — HTML, CSS e JavaScript
 
-The repository is branch-based, so, for example, if you want to use sources from the PHP Basics course, you need to switch to its branch:
-https://github.com/felipealencar/courses/tree/php-basic.
+> Disciplina ministrada pelo **prof. Felipe Alencar** no
+> **IFAL — Campus Arapiraca**.
+> Esta branch faz parte do repositório [`courses`](https://github.com/felipealencar/courses)
+> (organizado por branches). Veja o [índice de disciplinas](https://github.com/felipealencar/courses/tree/master).
 
-## cloning specific branch
-As this repository is branch-based, each course has its branch. 
+Fundamentos do desenvolvimento web front-end e introdução ao back-end com
+**Node.js**: da estruturação de páginas com HTML e estilização com CSS à
+interatividade com JavaScript e a aplicações web completas em arquitetura **MVC**.
 
-### command
-```git clone -b <branch-name> git@github.com:felipealencar/courses.git```
-  
-### example
-If you're a PHP Basic course's student, you can clone its branch using the following command:
+## Ementa (conteúdo aula a aula)
 
-```git clone -b php-basic git@github.com:felipealencar/courses.git```
-  
-## gitpod support
-Each branch has its .gp directory (_in progress_) with a Dockerfile environment definition considering the programming language and libraries used in such branch-related course.
+| Aulas | Tema |
+| --- | --- |
+| `lec-01`–`lec-03` | Estrutura de páginas com HTML; caminhos absolutos e relativos |
+| `lec-04`–`lec-06` | Introdução ao CSS, imagens, layout e múltiplas páginas |
+| `lec-07`–`lec-09` | Introdução ao JavaScript: laços, estruturas e DOM |
+| `lec-11` | Atividade prática (HTML + CSS) |
+| `lec-12` | Frameworks de CSS: Bootstrap e Material Design Lite |
+| `lec-13`–`lec-14` | JavaScript: scripts, formulários e mini-projeto (jogo da forca) |
+| `lec-15` | Exercícios de fixação |
+| `lec-19` | Exercícios com JavaScript |
+| `lec-24`–`lec-25` | Introdução ao Node.js (servidor e formulários) |
+| `lec-28`–`lec-30` | Aplicação web MVC com Express e Pug (projeto-esqueleto) |
 
-## students and contributors
-[@Manuel-Antunes](https://github.com/Manuel-Antunes) 
+## Pré-requisitos
+
+- Lógica de programação.
+- Para as últimas aulas: Node.js e npm instalados.
+
+## Ambiente e execução
+
+**Páginas estáticas (HTML/CSS/JS):** basta abrir o arquivo `index.html` da aula
+no navegador.
+
+**Aulas com Node.js (`lec-24` em diante):**
+
+```bash
+cd pweb-html-css-js/lec-28/projeto-esqueleto
+npm install
+npm start
+```
+
+## Como obter o código
+
+```bash
+git clone -b pweb-html-css-js git@github.com:felipealencar/courses.git
+```
