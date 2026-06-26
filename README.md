@@ -1,7 +1,6 @@
 # Artificial Intelligence
 
-> Course taught by **prof. Felipe Alencar** at
-> **IFAL — Arapiraca Campus**.
+> Course taught by **prof. Felipe Alencar**.
 > This branch is the English version of the
 > [`inteligencia-artificial`](https://github.com/felipealencar/courses/tree/inteligencia-artificial)
 > course and is part of the [`courses`](https://github.com/felipealencar/courses)
