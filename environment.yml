@@ -1,0 +1,19 @@
+# Conda environment for the Artificial Intelligence course.
+#
+# Create with:   conda env create -f environment.yml
+# Activate with: conda activate ai-course
+#
+name: ai-course
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy>=1.24
+  - pandas>=1.5
+  - matplotlib>=3.6
+  - scikit-learn>=1.2
+  - networkx>=2.6
+  - jupyter
+  - pip
+  - pip:
+      - scikit-fuzzy>=0.4.2

@@ -1,0 +1,17 @@
+# Python dependencies for the Artificial Intelligence course.
+#
+# Install with:   pip install -r requirements.txt
+#
+# Lower bounds are used for portability (Google Colab / Binder ship recent but
+# not bleeding-edge versions). The course was last executed end-to-end with:
+#   python 3.13.7, numpy 2.5.0, pandas 3.0.3, scikit-learn 1.9.0,
+#   matplotlib 3.11.0, scikit-fuzzy 0.5.0, networkx 3.6.1
+#
+# The whole course runs on CPU in seconds — no GPU required.
+
+numpy>=1.24
+pandas>=1.5
+matplotlib>=3.6
+scikit-learn>=1.2
+scikit-fuzzy>=0.4.2
+networkx>=2.6
