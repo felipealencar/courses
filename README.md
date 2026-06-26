@@ -2,8 +2,7 @@
 
 > 🇧🇷 [Leia em português](README.pt-BR.md)
 
-Repository with textbooks, slides and source code for the courses I teach at the
-**Federal Institute of Alagoas (IFAL) — Arapiraca Campus**.
+Repository with textbooks, slides and source code for the courses I teach.
 
 The repository is **organized by branches**: each course lives in its own
 branch and has a `README.md` that works as a **syllabus/teaching plan**,
