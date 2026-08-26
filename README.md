@@ -1,3 +1,5 @@
+
+
 # courses — prof. Felipe Alencar
 
 > 🇧🇷 [Leia em português](README.pt-BR.md)
@@ -42,7 +44,7 @@ git clone -b php-basic git@github.com:felipealencar/courses.git
 ## Gitpod support
 
 Some branches include a `.gp` directory (_work in progress_) with the
-environment definition (Dockerfile) considering the language and libraries used
+environment definition (`.gitpod.Dockerfile`) considering the language and libraries used
 in the corresponding course.
 
 ## Students and contributors
